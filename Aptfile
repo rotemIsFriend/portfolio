@@ -1,5 +1,4 @@
 build-essential
 libffi-dev
 gcc
-backports.zoneinfo
 tzdata
