@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Favicon Links -->
+    <link rel="icon" href="{% static 'myPortfolio/icons/favicon.png' %}" type="image/x-icon">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{% static 'myPortfolio/css/main.css' %}">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Devicon for icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body id="top">
+    <!-- Navigation Bar -->
+    <header>
+        <div class="brand">
+            <a href="#top">
+                <i class="fas fa-home"></i>
+            </a>
+            <span class="brand-name">Rotem Haver</span>
+        </div>
+        <nav aria-label="Main Navigation">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+            <i id="dark-mode-toggle" class="fas fa-moon"></i>
+        </nav>
+    </header>
+
+    <!-- Opening Section -->
+    <section id="opening">
+        <div class="opening-content">
+            <div class="opening-text">
+                <h1>Hello There!</h1>
+                <p class="line1">I'm Rotem, B.Sc. Computer Science Student,</p>
+                <p class="line2">and I'm into Software Development!</p>
+                <div class="social-icons">
+                    <a href="https://github.com/rotemIsFriend" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/rotem-haver-aa68b7290" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="opening-image">
+                <img src="{% static 'myPortfolio/images/profile.jpg' %}" alt="Rotem Haver" class="profile-image">
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="{% static 'myPortfolio/images/developer.png' %}" alt="Illustration of a Developer">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    Driven and detail-oriented computer science student with a strong focus on 
+                    <strong>backend development</strong>. I am committed to continuous learning, 
+                    I thrive in collaborative environments and look forward to contributing to 
+                    impactful projects as part of a dynamic team. In my free time, I enjoy solving 
+                    cryptic crosswords, listening to music, and watching soccer.
+                </p>
+                <a href="{% static 'myPortfolio/docs/Rotem_Haver_CV.pdf' %}" class="cv-button" target="_blank">Open CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+        {% for project in projects %}
+        <div class="project-wrapper">
+            <!-- Project Image Card -->
+            <div class="project-image-card">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            </div>
+            <!-- Project Info Card -->
+            <div class="project-info-card">
+                <h3>{{ project.name }}</h3>
+                <p class="project-title">{{ project.title }}</p>
+                <p>{{ project.description }}</p>
+                
+                <!-- Technologies Tags -->
+                <div class="tags">
+                    {% for tech in project.technologies_list %}
+                    <span class="tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                
+                <!-- View Website and GitHub Links -->
+                <div class="project-links">
+                    <a href="{{ project.github_link }}" class="github-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="{{ project.link }}" class="view-website-btn" target="_blank">View Website</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            {% for skill in skills %}
+            <span class="skill">
+                <img src="{{ skill.icon_url }}" alt="{{ skill.name }}" title="{{ skill.name }}" class="skill-icon">
+            </span>
+            {% endfor %}
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Send Me A Message!</h2>
+        <form id="contactForm" method="post" data-url="{% url 'home' %}">
+            {% csrf_token %}
+            <input type="text" name="name" id="name" placeholder="Name" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <textarea name="message" id="message" placeholder="Message" rows="6" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    
+    
+    <!-- Social Links Footer -->
+    <footer id="social-links">
+        <h2>Social Links</h2>
+        <div class="social-icons">
+            <a href="https://wa.me/+972457212311" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/rotemIsFriend" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/rotem-haver-aa68b7290" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="footer-credits">Ⓒ 2024 Made by Rotem Haver</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
