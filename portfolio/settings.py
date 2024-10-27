@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-from pytz import timezone
-TIME_ZONE = timezone('UTC')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -123,6 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+TIME_ZONE = 'UTC'
+USE_TZ = True
 
 USE_I18N = True
 
