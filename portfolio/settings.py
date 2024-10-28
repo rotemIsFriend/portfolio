@@ -40,7 +40,7 @@ EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
